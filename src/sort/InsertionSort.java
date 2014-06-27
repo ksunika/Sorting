@@ -39,36 +39,20 @@ public class InsertionSort {
 		}
 	}
 
-	static int[] replaceUp(int[] array, int first, int last) {
-		
-		for (int i = last; i > first; i--){
-			array[i] = array[i-1];
-		}
-		return array;
-	}
 	
 	static int[] sort(int[] toSort) {
 		
 		for (int i = 0; i< toSort.length; i++){
 			
 			int item = toSort[i];
+			int j = i-1;
+			
+			while (j>=0 && toSort[j]>=item)
+				toSort[j+1] = toSort[j--];	
+			
+			
+			toSort[j+1] = item;
 
-			for (int j = i; j>=0; j--){
-				//printArray(toSort);
-				
-				if (j == 0 && toSort[j] > item){
-					replaceUp(toSort, j, i);
-					toSort[j] = item;
-				}
-				
-				if (toSort[j] < item && toSort[j+1] >= item){	
-					replaceUp(toSort, j+1, i);
-					toSort[j+1] = item;
-					break;
-					
-				}
-				
-			}
 		}
 				
 		return toSort;
